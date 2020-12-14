@@ -23,8 +23,12 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  return function (a) {
+    // eslint-disable-next-line prefer-rest-params,prefer-spread
+    if (arguments.length > 1) return f.call(null, g.apply(null, arguments));
+    return f(g(a));
+  };
 }
 
 
@@ -44,8 +48,9 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  // eslint-disable-next-line no-restricted-properties
+  return (num) => Math.pow(num, exponent);
 }
 
 
@@ -62,8 +67,12 @@ function getPowerFunction(/* exponent */) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...args) {
+  // eslint-disable-next-line no-undef
+  const arr = [...args];
+  const len = arr.length;
+  const func = (x) => (len ? arr.reduceRight((a, b, i) => a + b * (x ** (len - i - 1))) : null);
+  return func;
 }
 
 
@@ -169,8 +178,11 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  return function id() {
+    // eslint-disable-next-line no-param-reassign,no-plusplus
+    return startFrom++;
+  };
 }
 
 
