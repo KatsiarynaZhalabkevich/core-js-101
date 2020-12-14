@@ -24,6 +24,7 @@
  *
  */
 function getComposition(f, g) {
+  // eslint-disable-next-line func-names
   return function (a) {
     // eslint-disable-next-line prefer-rest-params,prefer-spread
     if (arguments.length > 1) return f.call(null, g.apply(null, arguments));
