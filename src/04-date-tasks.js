@@ -79,6 +79,7 @@ function timeSpanToString(startDate, endDate) {
   const HH = range.getUTCHours().toString().length < 2 ? '0'.concat(range.getUTCHours().toString()) : range.getUTCHours();
   const mm = range.getUTCMinutes().toString().length < 2 ? '0'.concat(range.getUTCMinutes().toString()) : range.getUTCMinutes();
   const ss = range.getUTCSeconds().toString().length < 2 ? '0'.concat(range.getUTCSeconds().toString()) : range.getUTCSeconds();
+  // eslint-disable-next-line no-nested-ternary
   const sss = range.getUTCMilliseconds().toString().length === 1 ? '00'.concat(range.getUTCMilliseconds().toString())
     : range.getUTCMilliseconds().toString().length === 2 ? '0'.concat(range.getUTCMilliseconds().toString()) : range.getUTCMilliseconds();
   return `${HH}:${mm}:${ss}.${sss}`;
